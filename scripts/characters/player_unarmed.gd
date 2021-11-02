@@ -11,7 +11,6 @@ export var jumpForce = 350
 onready var anim = $anim
 onready var bottomLeft  = $bottomLeft
 onready var bottomRight = $bottomRight
-onready var bottom      = $bottom
 
 # Variables
 var direction = 1 # 1 for right, -1 for left

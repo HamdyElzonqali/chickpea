@@ -89,14 +89,14 @@ animations = [ {
 "name": "edge",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "jump",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "fall",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "jump",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
@@ -155,7 +155,7 @@ format = 1
 tile_data = PoolIntArray( 196615, 0, 196608, 196616, 0, 196609, 196617, 0, 196610, 196620, 0, 3, 327695, 0, 0, 327696, 0, 2, 393231, 0, 131072, 393232, 0, 131074, 458758, 0, 0, 458759, 0, 1, 458760, 0, 1, 458761, 0, 1, 458762, 0, 1, 458763, 0, 1, 458764, 0, 1, 458765, 0, 2, 524294, 0, 65536, 524295, 0, 65537, 524296, 0, 65537, 524297, 0, 65537, 524298, 0, 65537, 524299, 0, 65537, 524300, 0, 65537, 524301, 0, 65538, 589830, 0, 65536, 589831, 0, 65537, 589832, 0, 65537, 589833, 0, 65537, 589834, 0, 65537, 589835, 0, 65537, 589836, 0, 65537, 589837, 0, 65538, 655366, 0, 131072, 655367, 0, 131073, 655368, 0, 131073, 655369, 0, 131073, 655370, 0, 131073, 655371, 0, 131073, 655372, 0, 131073, 655373, 0, 131074 )
 
 [node name="player_unarmed" type="KinematicBody2D" parent="."]
-position = Vector2( 163, 104 )
+position = Vector2( 200.163, 38.7423 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
@@ -168,7 +168,7 @@ shape = SubResource( 3 )
 [node name="anim" type="AnimatedSprite" parent="player_unarmed"]
 frames = SubResource( 14 )
 animation = "idle"
-frame = 3
+frame = 1
 speed_scale = 2.0
 playing = true
 
