@@ -63,6 +63,8 @@ func handleMovement(delta):
 		elif mVelocity.x < 0:
 			anim.scale.x = -1
 			direction = -1
+		else:
+			current_animation = 'idle'
 		if is_on_wall():
 			current_animation = 'idle'
 	else:

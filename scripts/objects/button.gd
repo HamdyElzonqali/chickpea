@@ -19,7 +19,7 @@ func _process(delta):
 			isPressed()
 
 func onPressed(body):
-	#if body.get('isPlayer'):
+	Globals.camera.shake(2, 0.5)
 	down = true
 	anim.animation = 'pressed'
 	emit_signal('pressed')
