@@ -13,6 +13,7 @@ onready var bottomLeft  = $bottomLeft
 onready var bottomRight = $bottomRight
 
 # Variables
+#var isPlayer  = true # used for physics detection 
 var direction = 1 # 1 for right, -1 for left
 var playable  = true # handle input or not
 var mVelocity = Vector2.ZERO # how we should move the player based on input
