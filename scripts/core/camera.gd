@@ -21,8 +21,9 @@ func fit():
 	size = get_viewport_rect().size
 	current_scale = min(floor(size.x / base_width), floor(size.y / base_height)) 
 	if current_scale > 0:
-		zoom = Vector2(1 / current_scale, 1 / current_scale)
 		view_offset = Vector2(-(size.x - base_width * current_scale) / (2 * current_scale), -(size.y - base_height * current_scale) / (2 * current_scale))
+		offset = view_offset
+		zoom = Vector2(1 / current_scale, 1 / current_scale)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -35,7 +36,6 @@ func _ready():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-		
 	if shake_timer > 0:
 		shake_timer -= delta
 		

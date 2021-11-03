@@ -19,12 +19,14 @@ func _process(delta):
 			isPressed()
 
 func onPressed(body):
+	# TODO: play sound
 	Globals.camera.shake(2, 0.5)
 	down = true
 	anim.animation = 'pressed'
 	emit_signal('pressed')
 
 func onUnpressed(body):
+	# TODO: play sound
 	down  = false
 	anim.animation = 'unpressed'
 	emit_signal('unpressed')
