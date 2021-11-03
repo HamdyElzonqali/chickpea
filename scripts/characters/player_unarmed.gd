@@ -62,6 +62,8 @@ func handleMovement(delta):
 		elif mVelocity.x < 0:
 			anim.scale.x = -1
 			direction = -1
+		if is_on_wall():
+			current_animation = 'idle'
 	else:
 		# while the player is standing still
 		if direction > 0:
