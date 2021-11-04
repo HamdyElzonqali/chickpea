@@ -4,6 +4,7 @@ var stuck = true
 var current_mode = 0
 
 onready var anim = $animation
+var effect = preload("res://objects/effects/vanish.tscn")
 
 var timer = 0; var timer2 = 0;
 
@@ -32,15 +33,18 @@ func _process(delta):
 		timer -= delta
 		if timer <= 0:
 			if visible:
+				var instance = effect.instance()
+				get_viewport().get_child(0).add_child(instance)
+				instance.global_position = position + Vector2(-18, 8)
 				visible = false
 				position.y = 50
 				rotation = 0
 				$sprite.animation = 'bubble'
 				anim.play('gun4')
-				timer = 0.4
+				timer = 2
 			else:
 				visible = true
-				timer2 = 3
+				timer2 = 5
 			
 			
 	if timer2 > 0:

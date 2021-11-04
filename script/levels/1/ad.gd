@@ -11,3 +11,8 @@ func _ready():
 func appear():
 	$AnimationPlayer.play("show")
 	visible = true
+
+
+func _on_Button_pressed():
+	Globals.camera.shake(3, 1)
+	pass # Replace with function body.

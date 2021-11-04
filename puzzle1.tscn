@@ -19,7 +19,7 @@
 [ext_resource path="res://image/objects/button.png" type="Texture" id=17]
 [ext_resource path="res://script/characters/player_unarmed.gd" type="Script" id=18]
 [ext_resource path="res://script/objects/button.gd" type="Script" id=19]
-[ext_resource path="res://Sprite-0001.png" type="Texture" id=20]
+[ext_resource path="res://image/backgrounds/sky.png" type="Texture" id=20]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -308,7 +308,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.8 ),
 "transitions": PoolRealArray( 0.353553, 1.46409 ),
 "update": 0,
-"values": [ Vector2( -67, 60 ), Vector2( 0, 60 ) ]
+"values": [ Vector2( -67, 0 ), Vector2( 0, 0 ) ]
 }
 
 [sub_resource type="RectangleShape2D" id=15]
@@ -384,10 +384,23 @@ animations = [ {
 
 [node name="room" type="Node2D"]
 
-[node name="Sprite-0001" type="Sprite" parent="."]
-position = Vector2( 167, 101 )
-scale = Vector2( 0.64, 0.64 )
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0, 0 )
+motion_mirroring = Vector2( 640, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 20 )
+centered = false
+
+[node name="Sprite2" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 472, 37 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 20 )
+centered = false
+offset = Vector2( -304, -74 )
 
 [node name="collision" type="Node2D" parent="."]
 
@@ -497,15 +510,24 @@ frames = SubResource( 13 )
 animation = "unpressed"
 
 [node name="ad" type="Node2D" parent="."]
+position = Vector2( 0, 60 )
 script = ExtResource( 1 )
 
 [node name="sprite" type="Sprite" parent="ad"]
-position = Vector2( -67, 60 )
+position = Vector2( -67, 0 )
 texture = ExtResource( 13 )
 centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ad"]
 anims/show = SubResource( 14 )
+
+[node name="Button" type="Button" parent="ad"]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 65.0
+margin_bottom = 48.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="player_unarmed" type="KinematicBody2D" parent="."]
 position = Vector2( 62, 136 )
@@ -538,3 +560,4 @@ cast_to = Vector2( 0, 3 )
 
 [connection signal="pressed" from="button" to="sign" method="_on_button_pressed"]
 [connection signal="pressed" from="button" to="gun" method="_on_button_pressed"]
+[connection signal="pressed" from="ad/Button" to="ad" method="_on_Button_pressed"]
