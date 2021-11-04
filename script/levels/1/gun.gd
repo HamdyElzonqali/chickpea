@@ -42,12 +42,14 @@ func _process(delta):
 				rotation = 0
 				$sprite.animation = 'bubble'
 				anim.play('gun4')
+				Globals.glitch.play_for(0.1)
 				timer = 1
 			else:
 				var instance = effect2.instance()
 				get_viewport().get_child(0).add_child(instance)
 				instance.global_position = position + Vector2(-8, 0)
 				visible = true
+				Globals.glitch.play_for(0.1)
 				timer2 = 5
 			
 			

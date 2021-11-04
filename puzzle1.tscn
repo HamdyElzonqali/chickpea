@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://script/levels/1/ad.gd" type="Script" id=1]
 [ext_resource path="res://script/levels/1/sign.gd" type="Script" id=2]
@@ -22,6 +22,8 @@
 [ext_resource path="res://image/backgrounds/SkyBg.png" type="Texture" id=20]
 [ext_resource path="res://image/objects/offer.png" type="Texture" id=21]
 [ext_resource path="res://script/levels/1/offer.gd" type="Script" id=22]
+[ext_resource path="res://other/shaders/glitch.shader" type="Shader" id=23]
+[ext_resource path="res://script/effects/glitch.gd" type="Script" id=24]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -373,14 +375,14 @@ animations = [ {
 "name": "jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "fall",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 23 ), SubResource( 24 ), SubResource( 25 ) ],
 "loop": true,
 "name": "run",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "fall",
 "speed": 5.0
 } ]
 
@@ -389,6 +391,14 @@ extents = Vector2( 50, 43 )
 
 [sub_resource type="RectangleShape2D" id=28]
 extents = Vector2( 50, 7 )
+
+[sub_resource type="ShaderMaterial" id=29]
+shader = ExtResource( 23 )
+shader_param/shake_power = 0.03
+shader_param/shake_rate = 1.0
+shader_param/shake_speed = 5.0
+shader_param/shake_block_size = 30.5
+shader_param/shake_color_rate = 0.01
 
 [node name="room" type="Node2D"]
 
@@ -534,6 +544,7 @@ modulate = Color( 1, 1, 1, 0 )
 margin_top = 1.0
 margin_right = 65.0
 margin_bottom = 49.0
+mouse_default_cursor_shape = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -554,7 +565,7 @@ shape = SubResource( 15 )
 [node name="anim" type="AnimatedSprite" parent="player_unarmed"]
 frames = SubResource( 26 )
 animation = "idle"
-frame = 2
+frame = 1
 speed_scale = 2.0
 playing = true
 
@@ -589,6 +600,24 @@ texture = ExtResource( 21 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="offer/Area2D"]
 position = Vector2( 0, -35 )
 shape = SubResource( 28 )
+
+[node name="canvas" type="CanvasLayer" parent="."]
+
+[node name="glitch" type="ColorRect" parent="canvas"]
+process_priority = 1
+visible = false
+material = SubResource( 29 )
+anchor_right = 2.003
+anchor_bottom = 2.004
+margin_right = 0.039978
+margin_bottom = 0.0399475
+grow_horizontal = 2
+grow_vertical = 2
+input_pass_on_modal_close_click = false
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="pressed" from="button" to="sign" method="_on_button_pressed"]
 [connection signal="pressed" from="button" to="gun" method="_on_button_pressed"]
