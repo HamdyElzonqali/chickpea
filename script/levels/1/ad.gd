@@ -14,5 +14,6 @@ func appear():
 
 
 func _on_Button_pressed():
-	Globals.camera.shake(3, 1)
-	pass # Replace with function body.
+	Globals.camera.shake(1, 0.5)
+	var win = get_node("../offer")
+	win.global_position = Vector2(70, 90)

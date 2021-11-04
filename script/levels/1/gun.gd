@@ -5,6 +5,7 @@ var current_mode = 0
 
 onready var anim = $animation
 var effect = preload("res://objects/effects/vanish.tscn")
+var effect2 = preload("res://objects/effects/pop.tscn")
 
 var timer = 0; var timer2 = 0;
 
@@ -41,8 +42,11 @@ func _process(delta):
 				rotation = 0
 				$sprite.animation = 'bubble'
 				anim.play('gun4')
-				timer = 2
+				timer = 1
 			else:
+				var instance = effect2.instance()
+				get_viewport().get_child(0).add_child(instance)
+				instance.global_position = position + Vector2(-8, 0)
 				visible = true
 				timer2 = 5
 			

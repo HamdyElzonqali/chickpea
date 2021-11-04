@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://script/levels/1/ad.gd" type="Script" id=1]
 [ext_resource path="res://script/levels/1/sign.gd" type="Script" id=2]
@@ -19,7 +19,9 @@
 [ext_resource path="res://image/objects/button.png" type="Texture" id=17]
 [ext_resource path="res://script/characters/player_unarmed.gd" type="Script" id=18]
 [ext_resource path="res://script/objects/button.gd" type="Script" id=19]
-[ext_resource path="res://image/backgrounds/sky.png" type="Texture" id=20]
+[ext_resource path="res://image/backgrounds/SkyBg.png" type="Texture" id=20]
+[ext_resource path="res://image/objects/offer.png" type="Texture" id=21]
+[ext_resource path="res://script/levels/1/offer.gd" type="Script" id=22]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -382,6 +384,12 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="RectangleShape2D" id=27]
+extents = Vector2( 50, 43 )
+
+[sub_resource type="RectangleShape2D" id=28]
+extents = Vector2( 50, 7 )
+
 [node name="room" type="Node2D"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -523,8 +531,9 @@ anims/show = SubResource( 14 )
 
 [node name="Button" type="Button" parent="ad"]
 modulate = Color( 1, 1, 1, 0 )
+margin_top = 1.0
 margin_right = 65.0
-margin_bottom = 48.0
+margin_bottom = 49.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -545,6 +554,7 @@ shape = SubResource( 15 )
 [node name="anim" type="AnimatedSprite" parent="player_unarmed"]
 frames = SubResource( 26 )
 animation = "idle"
+frame = 2
 speed_scale = 2.0
 playing = true
 
@@ -558,6 +568,29 @@ position = Vector2( -3, 8 )
 enabled = true
 cast_to = Vector2( 0, 3 )
 
+[node name="offer" type="Node2D" parent="."]
+position = Vector2( -197, -150 )
+script = ExtResource( 22 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="offer"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="offer/StaticBody2D"]
+shape = SubResource( 27 )
+one_way_collision = true
+
+[node name="sprite" type="Sprite" parent="offer"]
+texture = ExtResource( 21 )
+
+[node name="Area2D" type="Area2D" parent="offer"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="offer/Area2D"]
+position = Vector2( 0, -35 )
+shape = SubResource( 28 )
+
 [connection signal="pressed" from="button" to="sign" method="_on_button_pressed"]
 [connection signal="pressed" from="button" to="gun" method="_on_button_pressed"]
 [connection signal="pressed" from="ad/Button" to="ad" method="_on_Button_pressed"]
+[connection signal="input_event" from="offer/Area2D" to="offer" method="_on_Area2D_input_event"]
