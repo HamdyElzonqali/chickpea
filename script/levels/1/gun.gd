@@ -6,6 +6,7 @@ var current_mode = 0
 onready var anim = $animation
 var effect = preload("res://objects/effects/vanish.tscn")
 var effect2 = preload("res://objects/effects/pop.tscn")
+var playerArmed = preload("res://objects/characters/player_armed.tscn")
 
 var timer = 0; var timer2 = 0;
 
@@ -59,3 +60,23 @@ func _process(delta):
 			get_node("../ad").appear()
 func _on_button_pressed():
 	step()
+
+
+func _on_collision_body_entered(body):
+	if body.get('isPlayer'):
+		var scene = get_viewport().get_child(0)
+		Globals.glitch.play_for(0.1)
+		var instance = effect.instance()
+		scene.add_child(instance)
+		instance.global_position = position + Vector2(-8, 0)
+		
+		instance = playerArmed.instance()
+		scene.add_child(instance)
+		scene.move_child(instance, scene.get_child_count() - 2)
+		instance.global_position = body.position
+		
+		get_node('../offer').queue_free()
+		get_node('../ad').queue_free()
+		body.queue_free()
+		# TODO: play sound
+		queue_free()

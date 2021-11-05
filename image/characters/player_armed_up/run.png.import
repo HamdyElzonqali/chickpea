@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/SkyBg.png-1ec2f8b2996ff03e817c5f420f38ebc7.stex"
+path="res://.import/run.png-edd8a79280aa3db00051eddce7e8bc36.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://image/backgrounds/SkyBg.png"
-dest_files=[ "res://.import/SkyBg.png-1ec2f8b2996ff03e817c5f420f38ebc7.stex" ]
+source_file="res://image/characters/player_armed_up/run.png"
+dest_files=[ "res://.import/run.png-edd8a79280aa3db00051eddce7e8bc36.stex" ]
 
 [params]
 

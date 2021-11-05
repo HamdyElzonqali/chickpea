@@ -24,11 +24,15 @@ var extraJumpTime = 0.05 # to make the jump feel more responsive on the edge
 var jumpTimer = 0
 var stretch = Vector2.ONE
 
+
+var state = "right" # right, up, down
+
+
 # Input
 var left = false; var right = false;
 var up   = false; var down  = false;
 var jump = false; var jumpTap = false
-#var fire  = false;
+var fire = false;
 
 func handleInput():
 	left  = Input.is_action_pressed('left')
@@ -37,10 +41,17 @@ func handleInput():
 	down  = Input.is_action_pressed('down')
 	jump  = Input.is_action_pressed("jump")
 	jumpTap = Input.is_action_just_pressed("jump")
-	#fire  = Input.is_action_pressed("fire")
+	fire  = Input.is_action_pressed("fire")
 
 func handleMovement(delta):
 	current_animation = 'idle' # the animation is idle by default
+	
+	if up:
+		state = 'up'
+	elif down:
+		state = 'down'
+	else:
+		state = 'right'
 	
 	if not left and not right:
 		mVelocity.x =  lerp(mVelocity.x, 0, delta * 40) # lerp is used to make stopping smooth
@@ -110,7 +121,7 @@ func handleMovement(delta):
 	if is_on_ceiling():
 		mVelocity.y = 1
 	
-	anim.animation = current_animation
+	anim.animation = state + '_' + current_animation
 
 
 # Called when the node enters the scene tree for the first time.
