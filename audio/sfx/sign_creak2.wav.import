@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sign_creak2.wav-5a85510acd4a233dccac03e533427b5c.sample"
+
+[deps]
+
+source_file="res://audio/sfx/sign_creak2.wav"
+dest_files=[ "res://.import/sign_creak2.wav-5a85510acd4a233dccac03e533427b5c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

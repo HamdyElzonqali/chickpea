@@ -10,7 +10,8 @@ config_version=4
 
 [application]
 
-config/name="Gameoff 2021"
+config/name="Chickpea"
+config/description="A little glitchy puzzle platformer made for GameOff 2021 game jam."
 run/main_scene="res://puzzle1.tscn"
 config/icon="res://icon.png"
 

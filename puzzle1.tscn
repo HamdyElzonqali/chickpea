@@ -91,7 +91,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.2, 0.4, 0.8 ),
+"times": PoolRealArray( 0, 0.2, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ 3.1, 3.2, 6.0 ]
@@ -160,7 +160,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 1.33 ),
+"times": PoolRealArray( 1.05 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -174,7 +174,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 1.3 ),
+"times": PoolRealArray( 1.05 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
@@ -186,7 +186,7 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 1.3 ),
+"times": PoolRealArray( 1.05 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [ "gun1", -1, 1.0, false ],
@@ -280,13 +280,13 @@ tracks/1/keys = {
 "values": [ Vector2( -11, -8.5 ), Vector2( -11, -6.5 ), Vector2( -11, -8.5 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=30]
+[sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 5.5, 5.5 )
 
-[sub_resource type="RectangleShape2D" id=12]
+[sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 7, 2 )
 
-[sub_resource type="SpriteFrames" id=13]
+[sub_resource type="SpriteFrames" id=14]
 animations = [ {
 "frames": [ ExtResource( 12 ) ],
 "loop": true,
@@ -299,7 +299,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=15]
 tracks/0/type = "value"
 tracks/0/path = NodePath("sprite:position")
 tracks/0/interp = 1
@@ -313,13 +313,13 @@ tracks/0/keys = {
 "values": [ Vector2( -67, 0 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="RectangleShape2D" id=27]
+[sub_resource type="RectangleShape2D" id=16]
 extents = Vector2( 50, 43 )
 
-[sub_resource type="RectangleShape2D" id=28]
+[sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 50, 7 )
 
-[sub_resource type="ShaderMaterial" id=29]
+[sub_resource type="ShaderMaterial" id=18]
 shader = ExtResource( 23 )
 shader_param/shake_power = 0.03
 shader_param/shake_rate = 1.0
@@ -415,6 +415,8 @@ anims/sign2 = SubResource( 4 )
 anims/sign3 = SubResource( 5 )
 anims/sign4 = SubResource( 6 )
 
+[node name="audio_player" type="AudioStreamPlayer" parent="sign"]
+
 [node name="camera" type="Camera2D" parent="."]
 anchor_mode = 0
 current = true
@@ -442,7 +444,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="shape" type="CollisionShape2D" parent="gun/collision"]
-shape = SubResource( 30 )
+shape = SubResource( 12 )
 
 [node name="button" type="Area2D" parent="."]
 position = Vector2( 160, 120 )
@@ -455,10 +457,10 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="button"]
 position = Vector2( 0, 6 )
-shape = SubResource( 12 )
+shape = SubResource( 13 )
 
 [node name="animation" type="AnimatedSprite" parent="button"]
-frames = SubResource( 13 )
+frames = SubResource( 14 )
 animation = "unpressed"
 
 [node name="ad" type="Node2D" parent="."]
@@ -471,7 +473,7 @@ texture = ExtResource( 13 )
 centered = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ad"]
-anims/show = SubResource( 14 )
+anims/show = SubResource( 15 )
 
 [node name="Button" type="Button" parent="ad"]
 modulate = Color( 1, 1, 1, 0 )
@@ -485,18 +487,16 @@ __meta__ = {
 
 [node name="player_unarmed" parent="." instance=ExtResource( 8 )]
 visible = true
+position = Vector2( 44, 136 )
 
 [node name="offer" type="Node2D" parent="."]
 position = Vector2( -197, -150 )
 script = ExtResource( 22 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="StaticBody2D" type="StaticBody2D" parent="offer"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="offer/StaticBody2D"]
-shape = SubResource( 27 )
+shape = SubResource( 16 )
 one_way_collision = true
 
 [node name="sprite" type="Sprite" parent="offer"]
@@ -506,7 +506,18 @@ texture = ExtResource( 21 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="offer/Area2D"]
 position = Vector2( 0, -35 )
-shape = SubResource( 28 )
+shape = SubResource( 17 )
+
+[node name="Button" type="Button" parent="offer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -33.0
+margin_top = 22.0
+margin_right = 34.0
+margin_bottom = 42.0
+mouse_default_cursor_shape = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="canvas" type="CanvasLayer" parent="."]
 layer = 3
@@ -514,7 +525,7 @@ layer = 3
 [node name="glitch" type="ColorRect" parent="canvas"]
 process_priority = 1
 visible = false
-material = SubResource( 29 )
+material = SubResource( 18 )
 anchor_right = 2.003
 anchor_bottom = 2.004
 margin_right = 0.039978
