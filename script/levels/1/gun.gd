@@ -10,6 +10,14 @@ var playerArmed = preload("res://objects/characters/player_armed.tscn")
 
 var timer = 0; var timer2 = 0;
 
+var subtitles = [
+	[''],
+	['Don`t even think about it!', 3],
+	['Fine!', 1],
+	['Ha! Show me how you will get it!', 4.5],
+	['Seriously!', 2]
+]
+
 func initPos():
 	if stuck:
 		position.y = Globals.camera.offset.y
@@ -25,10 +33,12 @@ func step():
 		current_mode += 1
 	if current_mode == 1:
 		anim.play("gun2")
+		Globals.subtitle.show_for(subtitles[1][0], subtitles[1][1], false)
 	elif current_mode == 2:
+		Globals.subtitle.show_for(subtitles[2][0], subtitles[2][1], false)
 		anim.play("gun3")
 		stuck = false
-		timer = 2
+		timer = 1
 
 func _process(delta):
 	if timer > 0:
@@ -50,14 +60,18 @@ func _process(delta):
 				get_viewport().get_child(0).add_child(instance)
 				instance.global_position = position + Vector2(-8, 0)
 				visible = true
+				anim.play('gun4')
 				Globals.glitch.play_for(0.1)
 				timer2 = 5
+				Globals.subtitle.show_for(subtitles[3][0], subtitles[3][1], false)
+				
 			
 			
 	if timer2 > 0:
 		timer2 -= delta
 		if timer2 <= 0:
 			get_node("../ad").appear()
+			Globals.subtitle.show_for(subtitles[4][0], subtitles[4][1], false, 1)
 func _on_button_pressed():
 	step()
 

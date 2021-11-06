@@ -8,6 +8,13 @@ signal isPressed;
 var pressable = false
 var down = false
 onready var anim = $animation
+onready var audio = $audio_player
+
+var pos = 0
+var sounds = [
+	preload("res://audio/sfx/ground_shake1.wav"),
+	preload("res://audio/sfx/ground_shake2.wav")
+]
 
 func _ready():
 	connect("body_entered", self, 'onPressed')
@@ -19,7 +26,10 @@ func _process(delta):
 			isPressed()
 
 func onPressed(body):
-	# TODO: play sound
+	audio.volume_db = Globals.sfx
+	audio.stream = sounds[pos]
+	audio.play()
+	pos = (pos + 1) % sounds.size()
 	Globals.camera.shake(2, 0.5)
 	down = true
 	anim.animation = 'pressed'

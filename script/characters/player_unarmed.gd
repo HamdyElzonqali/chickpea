@@ -30,6 +30,14 @@ var up   = false; var down  = false;
 var jump = false; var jumpTap = false
 #var fire  = false;
 
+onready var audio = $audio_player
+var jumpSound = preload("res://audio/sfx/jump.wav")
+
+func resetInput():
+	left = false; right = false;
+	up   = false; down  = false;
+	jump = false; jumpTap = false
+	
 func handleInput():
 	left  = Input.is_action_pressed('left')
 	right = Input.is_action_pressed('right')
@@ -79,9 +87,14 @@ func handleMovement(delta):
 	if jumpTimer > 0:
 		jumpTimer -= delta
 		if jumpTap:
+			#jump
 			jumpTimer = 0
 			mVelocity.y = -jumpForce
 			canJump = false
+			
+			audio.stream = jumpSound
+			audio.volume_db = Globals.sfx
+			audio.play()
 	
 	if mVelocity.y < 0:
 		# hold jump for a higher jump
@@ -115,7 +128,7 @@ func handleMovement(delta):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	Globals.player = self
 
 
 # Called every physics frame. (60 times per second)

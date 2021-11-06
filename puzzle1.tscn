@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://script/levels/1/ad.gd" type="Script" id=1]
 [ext_resource path="res://script/levels/1/sign.gd" type="Script" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://image/objects/gun.png" type="Texture" id=6]
 [ext_resource path="res://image/tilemaps/grass.png" type="Texture" id=7]
 [ext_resource path="res://objects/characters/player_unarmed.tscn" type="PackedScene" id=8]
+[ext_resource path="res://other/fonts/uni0553.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://script/objects/subtitle.gd" type="Script" id=11]
 [ext_resource path="res://image/objects/button-pressed.png" type="Texture" id=12]
 [ext_resource path="res://image/objects/ad.png" type="Texture" id=13]
 [ext_resource path="res://image/objects/sign.png" type="Texture" id=15]
@@ -327,6 +329,12 @@ shader_param/shake_speed = 5.0
 shader_param/shake_block_size = 30.5
 shader_param/shake_color_rate = 0.01
 
+[sub_resource type="StyleBoxFlat" id=20]
+bg_color = Color( 0.0705882, 0.0705882, 0.0705882, 0.768627 )
+
+[sub_resource type="DynamicFont" id=19]
+font_data = ExtResource( 10 )
+
 [node name="room" type="Node2D"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -346,6 +354,14 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 20 )
 centered = false
 offset = Vector2( -304, -74 )
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground/ParallaxLayer"]
+margin_top = 240.0
+margin_right = 641.0
+margin_bottom = 481.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="collision" type="Node2D" parent="."]
 
@@ -416,6 +432,7 @@ anims/sign3 = SubResource( 5 )
 anims/sign4 = SubResource( 6 )
 
 [node name="audio_player" type="AudioStreamPlayer" parent="sign"]
+bus = "sfx"
 
 [node name="camera" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -462,6 +479,9 @@ shape = SubResource( 13 )
 [node name="animation" type="AnimatedSprite" parent="button"]
 frames = SubResource( 14 )
 animation = "unpressed"
+
+[node name="audio_player" type="AudioStreamPlayer" parent="button"]
+bus = "sfx_low"
 
 [node name="ad" type="Node2D" parent="."]
 position = Vector2( 0, 60 )
@@ -534,6 +554,23 @@ grow_horizontal = 2
 grow_vertical = 2
 input_pass_on_modal_close_click = false
 script = ExtResource( 24 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="subtitle" type="Node2D" parent="."]
+visible = false
+script = ExtResource( 11 )
+
+[node name="Label" type="Label" parent="subtitle"]
+margin_top = 206.0
+margin_right = 320.0
+margin_bottom = 229.0
+custom_styles/normal = SubResource( 20 )
+custom_fonts/font = SubResource( 19 )
+text = " This is an example"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

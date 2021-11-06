@@ -4,7 +4,6 @@ extends KinematicBody2D
 # Main Variables
 export var speed = 150 # pixel per second
 export var gravity = 25
-export var fall_speed = 150 # maximum falling speed
 export var jumpForce = 350
 
 # Getting Children
@@ -26,13 +25,27 @@ var stretch = Vector2.ONE
 
 
 var state = "right" # right, up, down
+var fire_delay = 0.15
+var fire_timer = 0
+var offset = Vector2.ZERO
+var bullet = preload("res://objects/objects/bullet.tscn")
 
+var instance
+
+onready var audio = $audio_player
+var jumpSound = preload("res://audio/sfx/jump.wav")
 
 # Input
 var left = false; var right = false;
 var up   = false; var down  = false;
 var jump = false; var jumpTap = false
 var fire = false;
+
+func resetInput():
+	left = false; right = false;
+	up   = false; down  = false;
+	jump = false; jumpTap = false
+	fire = false;
 
 func handleInput():
 	left  = Input.is_action_pressed('left')
@@ -45,6 +58,8 @@ func handleInput():
 
 func handleMovement(delta):
 	current_animation = 'idle' # the animation is idle by default
+	
+	velocity.x = lerp(velocity.x, 0, 8 * delta)
 	
 	if up:
 		state = 'up'
@@ -65,7 +80,13 @@ func handleMovement(delta):
 		mVelocity.x += speed
 		current_animation = 'run'
 		
-	mVelocity.y += gravity
+	mVelocity.y += gravity 
+	velocity.y += gravity
+	if velocity.y < 0 and mVelocity.y > 0:
+		mVelocity.y = 0
+		
+	if velocity.y > 0:
+		velocity.y = 0
 	
 	if left or right:
 		if mVelocity.x > 0:
@@ -93,6 +114,10 @@ func handleMovement(delta):
 			jumpTimer = 0
 			mVelocity.y = -jumpForce
 			canJump = false
+			
+			audio.stream = jumpSound
+			audio.volume_db = Globals.sfx
+			audio.play()
 	
 	if mVelocity.y < 0:
 		# hold jump for a higher jump
@@ -123,10 +148,43 @@ func handleMovement(delta):
 	
 	anim.animation = state + '_' + current_animation
 
+	if fire_timer > 0:
+		fire_timer -= delta
+	else:
+		if fire:
+			fire_timer = fire_delay
+			Globals.camera.shake(5, 0.4)
+			
+			instance = bullet.instance()
+			if up:
+				instance.direction = 4
+				offset.x = direction * -3
+				offset.y = -6
+				velocity = Vector2(0, 20)
+			elif down:
+				instance.direction = 3
+				offset.x = 0
+				offset.y = 6
+				velocity = Vector2(0, -20)
+			elif direction == 1:
+				instance.direction = 1
+				offset.x = 8
+				offset.y = 2
+				velocity = Vector2(-20, 0)
+			else:
+				instance.direction = 2
+				offset.x = -8
+				offset.y = 2
+				velocity = Vector2(20, 0)
+				
+			instance.global_position = global_position + offset
+			get_viewport().get_child(0).add_child(instance)
+			
+			
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	Globals.player = self
 
 
 # Called every physics frame. (60 times per second)
