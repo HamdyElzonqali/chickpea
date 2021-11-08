@@ -34,6 +34,7 @@ func delay(text, time, playable, delay, voice_over = null):
 
 func clear():
 	delayed.clear()
+	visible = false
 
 func _process(delta):
 	if delay_timer > 0:

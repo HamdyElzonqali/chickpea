@@ -34,7 +34,10 @@ onready var audio = $audio_player
 var jumpSound = preload("res://audio/sfx/jump.wav")
 
 var running_dust = preload("res://objects/effects/running_dust.tscn")
-var running_dust_delay = 0.1
+var running_dust_delay = 0.5
+
+var jump_dust = preload("res://objects/effects/jump_dust.tscn")
+var land_dust = preload("res://objects/effects/jump_dust.tscn")
 
 func resetInput():
 	left = false; right = false;
@@ -53,7 +56,6 @@ func handleInput():
 var running_dust_timer = 0
 var instance
 func runningDust(delta):
-	return
 	if running_dust_timer < 0:
 		running_dust_timer = running_dust_delay
 	else:
@@ -61,7 +63,7 @@ func runningDust(delta):
 		if running_dust_timer < 0:
 			instance = running_dust.instance()
 			get_viewport().get_child(0).add_child(instance)
-			instance.global_position = global_position
+			instance.global_position = global_position + Vector2(0, 4)
 			instance.scale.x = direction
 
 func handleMovement(delta):
@@ -115,7 +117,12 @@ func handleMovement(delta):
 			audio.stream = jumpSound
 			audio.volume_db = Globals.sfx
 			audio.play()
-	
+			
+			instance = jump_dust.instance()
+			get_viewport().get_child(0).add_child(instance)
+			instance.global_position = global_position
+			instance.scale.x = direction
+			
 	if mVelocity.y < 0:
 		# hold jump for a higher jump
 		if not jump:
@@ -124,6 +131,11 @@ func handleMovement(delta):
 	move_and_slide(velocity + mVelocity, Vector2.UP)
 	
 	if is_on_floor():
+		if not canJump:
+			instance = land_dust.instance()
+			get_viewport().get_child(0).add_child(instance)
+			instance.global_position = global_position
+			instance.scale.x = direction
 		mVelocity.y = 50 # 20 instead of 0 for a smoother fall from edge
 		canJump = true
 		jumpTimer = extraJumpTime

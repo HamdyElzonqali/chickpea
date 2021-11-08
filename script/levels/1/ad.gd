@@ -9,7 +9,6 @@ var enter_sound = preload("res://audio/sfx/ad_enter.wav")
 onready var audio = $audio_player
 
 var said = false
-var said2 = false
 
 func initPos():
 	position.x = Globals.camera.offset.x
@@ -33,5 +32,6 @@ func _on_Button_pressed():
 	win.global_position = Vector2(70, 90)
 	if not said:
 		said = true
+		Globals.subtitle.clear()
 		Globals.subtitle.show_for(subtitles[0][0], subtitles[0][1], false, 2)
 		Globals.subtitle.delay(subtitles[1][0], subtitles[1][1], false, subtitles[0][1] + 2 + 1)

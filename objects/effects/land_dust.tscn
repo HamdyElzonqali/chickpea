@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://script/effects/effect_simple.gd" type="Script" id=1]
-[ext_resource path="res://image/effects/Dust Run Ver.png" type="Texture" id=2]
+[ext_resource path="res://image/effects/dust land ver.png" type="Texture" id=2]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
@@ -31,10 +31,12 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="running_dust" type="Node2D"]
+[node name="land_dust" type="Node2D"]
+z_index = 1
 script = ExtResource( 1 )
 
 [node name="animation" type="AnimatedSprite" parent="."]
+z_index = 1
 frames = SubResource( 6 )
 speed_scale = 5.0
 playing = true
