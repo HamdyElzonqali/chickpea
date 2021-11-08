@@ -79,7 +79,6 @@ animations = [ {
 } ]
 
 [node name="player_unarmed" type="KinematicBody2D"]
-visible = false
 collision_layer = 2
 collision/safe_margin = 0.05
 script = ExtResource( 6 )
@@ -94,7 +93,7 @@ shape = SubResource( 1 )
 [node name="anim" type="AnimatedSprite" parent="."]
 frames = SubResource( 12 )
 animation = "idle"
-frame = 2
+frame = 1
 speed_scale = 2.0
 playing = true
 
@@ -109,4 +108,4 @@ enabled = true
 cast_to = Vector2( 0, 3 )
 
 [node name="audio_player" type="AudioStreamPlayer" parent="."]
-bus = "sfx"
+bus = "sfx_low"

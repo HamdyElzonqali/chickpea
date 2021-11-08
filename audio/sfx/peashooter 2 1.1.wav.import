@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/peashooter 2 1.1.wav-cd47b93ba45744f7083d16d03ee964da.sample"
+
+[deps]
+
+source_file="res://audio/sfx/peashooter 2 1.1.wav"
+dest_files=[ "res://.import/peashooter 2 1.1.wav-cd47b93ba45744f7083d16d03ee964da.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

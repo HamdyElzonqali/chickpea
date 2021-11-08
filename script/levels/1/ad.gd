@@ -2,10 +2,14 @@ extends Node2D
 
 var subtitles = [
 	['I know you can`t afford that.', 3],
-	['Neither do I...', 2]
+	['Neither do I...', 2],
 ]
 
+var enter_sound = preload("res://audio/sfx/ad_enter.wav")
+onready var audio = $audio_player
+
 var said = false
+var said2 = false
 
 func initPos():
 	position.x = Globals.camera.offset.x
@@ -18,6 +22,9 @@ func _ready():
 func appear():
 	$AnimationPlayer.play("show")
 	visible = true
+	audio.stream = enter_sound
+	audio.volume_db = Globals.sfx
+	audio.play()
 
 
 func _on_Button_pressed():

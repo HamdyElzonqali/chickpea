@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ground_shake2_old.wav-8d16937ce0844c6d97369fe73a58bf0a.sample"
+
+[deps]
+
+source_file="res://audio/sfx/ground_shake2_old.wav"
+dest_files=[ "res://.import/ground_shake2_old.wav-8d16937ce0844c6d97369fe73a58bf0a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

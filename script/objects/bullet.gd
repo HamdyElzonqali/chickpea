@@ -1,5 +1,6 @@
 extends Area2D
 
+var isBullet = true #used for physiscs detection
 var speed = 250
 var direction = 1
 var cap = 7

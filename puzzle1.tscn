@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://script/levels/1/ad.gd" type="Script" id=1]
 [ext_resource path="res://script/levels/1/sign.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://image/objects/gun.png" type="Texture" id=6]
 [ext_resource path="res://image/tilemaps/grass.png" type="Texture" id=7]
 [ext_resource path="res://objects/characters/player_unarmed.tscn" type="PackedScene" id=8]
+[ext_resource path="res://audio/voice_over/What Have You Done 1.0.wav" type="AudioStream" id=9]
 [ext_resource path="res://other/fonts/uni0553.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://script/objects/subtitle.gd" type="Script" id=11]
 [ext_resource path="res://image/objects/button-pressed.png" type="Texture" id=12]
@@ -329,10 +330,10 @@ shader_param/shake_speed = 5.0
 shader_param/shake_block_size = 30.5
 shader_param/shake_color_rate = 0.01
 
-[sub_resource type="StyleBoxFlat" id=20]
+[sub_resource type="StyleBoxFlat" id=19]
 bg_color = Color( 0.0705882, 0.0705882, 0.0705882, 0.768627 )
 
-[sub_resource type="DynamicFont" id=19]
+[sub_resource type="DynamicFont" id=20]
 font_data = ExtResource( 10 )
 
 [node name="room" type="Node2D"]
@@ -481,7 +482,10 @@ frames = SubResource( 14 )
 animation = "unpressed"
 
 [node name="audio_player" type="AudioStreamPlayer" parent="button"]
-bus = "sfx_low"
+bus = "sfx_medium"
+
+[node name="audio_player2" type="AudioStreamPlayer" parent="button"]
+bus = "sfx_medium"
 
 [node name="ad" type="Node2D" parent="."]
 position = Vector2( 0, 60 )
@@ -505,8 +509,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="audio_player" type="AudioStreamPlayer" parent="ad"]
+bus = "sfx_low"
+
 [node name="player_unarmed" parent="." instance=ExtResource( 8 )]
-visible = true
 position = Vector2( 44, 136 )
 
 [node name="offer" type="Node2D" parent="."]
@@ -559,21 +565,24 @@ __meta__ = {
 }
 
 [node name="subtitle" type="Node2D" parent="."]
-visible = false
 script = ExtResource( 11 )
 
 [node name="Label" type="Label" parent="subtitle"]
 margin_top = 206.0
 margin_right = 320.0
 margin_bottom = 229.0
-custom_styles/normal = SubResource( 20 )
-custom_fonts/font = SubResource( 19 )
+custom_styles/normal = SubResource( 19 )
+custom_fonts/font = SubResource( 20 )
 text = " This is an example"
 align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="audio_player" type="AudioStreamPlayer" parent="subtitle"]
+stream = ExtResource( 9 )
+bus = "voice"
 
 [connection signal="body_entered" from="gun/collision" to="gun" method="_on_collision_body_entered"]
 [connection signal="pressed" from="button" to="sign" method="_on_button_pressed"]

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Okay 1.0.wav-552cb01f732c0718e2b84a044550e354.sample"
+
+[deps]
+
+source_file="res://audio/voice_over/Okay 1.0.wav"
+dest_files=[ "res://.import/Okay 1.0.wav-552cb01f732c0718e2b84a044550e354.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

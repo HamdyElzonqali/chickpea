@@ -10,11 +10,11 @@ var sounds = [preload("res://audio/sfx/sign_creak1.wav"),
 			  preload("res://audio/sfx/sign_creak3_w_bug.wav")]
 
 var subtitles = [
-	['What have you done?', 2],
-	['There is a reason this sign is there.', 3],
-	['Stop it!', 1],
-	['ُEnough!', 1],
-	['NO NO NO...', 2]
+	['What have you done?', 2, preload("res://audio/voice_over/What Have You Done 1.0.wav")],
+	['There is a reason this sign is there.', 3, preload("res://audio/voice_over/There's A Reason This Sign Is There 1.1.wav")],
+	['Stop it!', 1, preload("res://audio/voice_over/Stop It 1.0.wav")],
+	['ُEnough!', 1, preload("res://audio/voice_over/Enough 1.0.wav")],
+	['NO NO NO...', 2, preload("res://audio/voice_over/No No No 1.0.wav")]
 ]
 
 func _on_button_pressed():
@@ -24,9 +24,9 @@ func _on_button_pressed():
 		audio.stream = sounds[current_animation - 1]
 		audio.volume_db = Globals.sfx
 		audio.play()
-		Globals.subtitle.show_for(subtitles[current_animation - 1][0], subtitles[current_animation - 1][1], false)
+		Globals.subtitle.show_for(subtitles[current_animation - 1][0], subtitles[current_animation - 1][1], false, 0, subtitles[current_animation - 1][2])
 
 
 func hit():
 	Globals.camera.shake(3, 0.9)
-	Globals.subtitle.show_for(subtitles[4][0], subtitles[4][1], false)
+	Globals.subtitle.show_for(subtitles[4][0], subtitles[4][1], false, 0.5, subtitles[4][2])

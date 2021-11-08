@@ -33,6 +33,9 @@ var jump = false; var jumpTap = false
 onready var audio = $audio_player
 var jumpSound = preload("res://audio/sfx/jump.wav")
 
+var running_dust = preload("res://objects/effects/running_dust.tscn")
+var running_dust_delay = 0.1
+
 func resetInput():
 	left = false; right = false;
 	up   = false; down  = false;
@@ -46,6 +49,20 @@ func handleInput():
 	jump  = Input.is_action_pressed("jump")
 	jumpTap = Input.is_action_just_pressed("jump")
 	#fire  = Input.is_action_pressed("fire")
+
+var running_dust_timer = 0
+var instance
+func runningDust(delta):
+	return
+	if running_dust_timer < 0:
+		running_dust_timer = running_dust_delay
+	else:
+		running_dust_timer -= delta
+		if running_dust_timer < 0:
+			instance = running_dust.instance()
+			get_viewport().get_child(0).add_child(instance)
+			instance.global_position = global_position
+			instance.scale.x = direction
 
 func handleMovement(delta):
 	current_animation = 'idle' # the animation is idle by default
@@ -75,7 +92,10 @@ func handleMovement(delta):
 			current_animation = 'idle'
 		if is_on_wall():
 			current_animation = 'idle'
+		if current_animation != 'idle' and is_on_floor():
+			runningDust(delta)
 	else:
+		running_dust_timer = 0
 		# while the player is standing still
 		if direction > 0:
 			if bottomLeft.is_colliding() and not bottomRight.is_colliding():

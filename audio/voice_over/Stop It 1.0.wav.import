@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Stop It 1.0.wav-8d15c15927b81532efceeb7d834ccc53.sample"
+
+[deps]
+
+source_file="res://audio/voice_over/Stop It 1.0.wav"
+dest_files=[ "res://.import/Stop It 1.0.wav-8d15c15927b81532efceeb7d834ccc53.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -32,8 +32,17 @@ var bullet = preload("res://objects/objects/bullet.tscn")
 
 var instance
 
+signal shoot
+
 onready var audio = $audio_player
 var jumpSound = preload("res://audio/sfx/jump.wav")
+
+var peaShooter = [
+	preload("res://audio/sfx/peashooter 1.1.wav"),
+	preload("res://audio/sfx/peashooter 2 1.1.wav")
+]
+
+var peaShooterIndex = 0
 
 # Input
 var left = false; var right = false;
@@ -180,7 +189,13 @@ func handleMovement(delta):
 			instance.global_position = global_position + offset
 			get_viewport().get_child(0).add_child(instance)
 			
+			audio.volume_db = Globals.sfx
+			audio.stream = peaShooter[peaShooterIndex]
+			audio.play()
 			
+			peaShooterIndex = (peaShooterIndex + 1) % peaShooter.size()
+			
+			emit_signal("shoot")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

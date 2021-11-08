@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Be Careful With That Thing 1.0.wav-3248c7919856f1391b002829aa19e0e5.sample"
+
+[deps]
+
+source_file="res://audio/voice_over/Be Careful With That Thing 1.0.wav"
+dest_files=[ "res://.import/Be Careful With That Thing 1.0.wav-3248c7919856f1391b002829aa19e0e5.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
