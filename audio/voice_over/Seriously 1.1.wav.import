@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Seriously 1.1.wav-0f9bc5b97b696ce9c9e265ca05ff6664.sample"
+
+[deps]
+
+source_file="res://audio/voice_over/Seriously 1.1.wav"
+dest_files=[ "res://.import/Seriously 1.1.wav-0f9bc5b97b696ce9c9e265ca05ff6664.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

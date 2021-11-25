@@ -35,7 +35,7 @@ var instance
 signal shoot
 
 onready var audio = $audio_player
-var jumpSound = preload("res://audio/sfx/jump.wav")
+var jumpSound = preload("res://audio/sfx/GameOff Jump 1.23.wav")
 
 var peaShooter = [
 	preload("res://audio/sfx/peashooter 1.1.wav"),

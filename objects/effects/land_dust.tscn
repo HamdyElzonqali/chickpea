@@ -32,12 +32,11 @@ animations = [ {
 } ]
 
 [node name="land_dust" type="Node2D"]
-z_index = 1
 script = ExtResource( 1 )
 
 [node name="animation" type="AnimatedSprite" parent="."]
-z_index = 1
 frames = SubResource( 6 )
+frame = 4
 speed_scale = 5.0
 playing = true
 

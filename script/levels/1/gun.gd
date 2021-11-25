@@ -15,7 +15,7 @@ var subtitles = [
 	['Don`t even think about it!', 3, preload("res://audio/voice_over/Don't Even Think About It 1.1.wav")],
 	['Fine!', 1, preload("res://audio/voice_over/Fine 1.1.wav")],
 	['You want it?', 2.5, preload("res://audio/voice_over/You Want It_ 1.0.wav")],
-	['Seriously!', 2, preload("res://audio/voice_over/Seriously 1.0.wav")],
+	['Seriously!', 2, preload("res://audio/voice_over/Seriously 1.1.wav")],
 	['Be careful with that thing!', 3, preload("res://audio/voice_over/Be Careful With That Thing 1.0.wav")]
 ]
 

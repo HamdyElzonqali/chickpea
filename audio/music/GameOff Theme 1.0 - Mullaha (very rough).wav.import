@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/GameOff Theme 1.0 - Mullaha (very rough).wav-047b007e5eb4eaad1597062d2cc00c39.sample"
+
+[deps]
+
+source_file="res://audio/music/GameOff Theme 1.0 - Mullaha (very rough).wav"
+dest_files=[ "res://.import/GameOff Theme 1.0 - Mullaha (very rough).wav-047b007e5eb4eaad1597062d2cc00c39.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

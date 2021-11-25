@@ -14,7 +14,7 @@ var subtitles = [
 	['There is a reason this sign is there.', 3, preload("res://audio/voice_over/There's A Reason This Sign Is There 1.1.wav")],
 	['Stop it!', 1, preload("res://audio/voice_over/Stop It 1.0.wav")],
 	['ُEnough!', 1, preload("res://audio/voice_over/Enough 1.0.wav")],
-	['NO NO NO...', 2, preload("res://audio/voice_over/No No No 1.0.wav")]
+	['NO NO NO...', 2, preload("res://audio/voice_over/No No No 1.4.wav")]
 ]
 
 func _on_button_pressed():

@@ -31,13 +31,13 @@ var jump = false; var jumpTap = false
 #var fire  = false;
 
 onready var audio = $audio_player
-var jumpSound = preload("res://audio/sfx/jump.wav")
+var jumpSound = preload("res://audio/sfx/GameOff Jump 1.23.wav")
 
 var running_dust = preload("res://objects/effects/running_dust.tscn")
 var running_dust_delay = 0.5
 
-var jump_dust = preload("res://objects/effects/jump_dust.tscn")
-var land_dust = preload("res://objects/effects/jump_dust.tscn")
+#var jump_dust = preload("res://objects/effects/jump_dust.tscn")
+#var land_dust = preload("res://objects/effects/land_dust.tscn")
 
 func resetInput():
 	left = false; right = false;
@@ -95,7 +95,7 @@ func handleMovement(delta):
 		if is_on_wall():
 			current_animation = 'idle'
 		if current_animation != 'idle' and is_on_floor():
-			runningDust(delta)
+			pass #runningDust(delta)
 	else:
 		running_dust_timer = 0
 		# while the player is standing still
@@ -118,10 +118,10 @@ func handleMovement(delta):
 			audio.volume_db = Globals.sfx
 			audio.play()
 			
-			instance = jump_dust.instance()
-			get_viewport().get_child(0).add_child(instance)
-			instance.global_position = global_position
-			instance.scale.x = direction
+			#instance = jump_dust.instance()
+			#get_viewport().get_child(0).add_child(instance)
+			#instance.global_position = global_position
+			#instance.scale.x = direction
 			
 	if mVelocity.y < 0:
 		# hold jump for a higher jump
@@ -131,11 +131,11 @@ func handleMovement(delta):
 	move_and_slide(velocity + mVelocity, Vector2.UP)
 	
 	if is_on_floor():
-		if not canJump:
-			instance = land_dust.instance()
-			get_viewport().get_child(0).add_child(instance)
-			instance.global_position = global_position
-			instance.scale.x = direction
+		#if not canJump:
+			#instance = land_dust.instance()
+			#get_viewport().get_child(0).add_child(instance)
+			#instance.global_position = global_position + Vector2(0, 4)
+			#instance.scale.x = direction
 		mVelocity.y = 50 # 20 instead of 0 for a smoother fall from edge
 		canJump = true
 		jumpTimer = extraJumpTime
