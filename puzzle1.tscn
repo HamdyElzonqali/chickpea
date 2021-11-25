@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://script/levels/1/ad.gd" type="Script" id=1]
 [ext_resource path="res://script/levels/1/sign.gd" type="Script" id=2]
@@ -13,17 +13,19 @@
 [ext_resource path="res://script/objects/subtitle.gd" type="Script" id=11]
 [ext_resource path="res://image/objects/button-pressed.png" type="Texture" id=12]
 [ext_resource path="res://image/objects/ad.png" type="Texture" id=13]
-[ext_resource path="res://audio/music/GameOff Theme 1.0 - Mullaha (very rough).wav" type="AudioStream" id=14]
+[ext_resource path="res://objects/objects/music.tscn" type="PackedScene" id=14]
 [ext_resource path="res://image/objects/sign.png" type="Texture" id=15]
 [ext_resource path="res://image/objects/gun_bubble.png" type="Texture" id=16]
 [ext_resource path="res://image/objects/button.png" type="Texture" id=17]
-[ext_resource path="res://script/core/loop.gd" type="Script" id=18]
 [ext_resource path="res://script/objects/button.gd" type="Script" id=19]
 [ext_resource path="res://image/backgrounds/BgSkyLoop.png" type="Texture" id=20]
 [ext_resource path="res://image/objects/offer.png" type="Texture" id=21]
 [ext_resource path="res://script/levels/1/offer.gd" type="Script" id=22]
 [ext_resource path="res://other/shaders/glitch.shader" type="Shader" id=23]
 [ext_resource path="res://script/effects/glitch.gd" type="Script" id=24]
+[ext_resource path="res://script/levels/1/healthbar.gd" type="Script" id=25]
+[ext_resource path="res://image/objects/healthbar-progress.png" type="Texture" id=26]
+[ext_resource path="res://image/objects/healthbar-background.png" type="Texture" id=27]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 8 )
@@ -338,6 +340,9 @@ bg_color = Color( 0.0705882, 0.0705882, 0.0705882, 0.768627 )
 [sub_resource type="DynamicFont" id=20]
 font_data = ExtResource( 10 )
 
+[sub_resource type="RectangleShape2D" id=21]
+extents = Vector2( 164, 21 )
+
 [node name="room" type="Node2D"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -587,15 +592,32 @@ __meta__ = {
 stream = ExtResource( 9 )
 bus = "voice"
 
-[node name="music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 14 )
-autoplay = true
-bus = "music"
-script = ExtResource( 18 )
+[node name="healthbar" type="Node2D" parent="."]
+script = ExtResource( 25 )
+
+[node name="TextureProgress" type="TextureProgress" parent="healthbar"]
+margin_left = 50.0
+margin_top = 13.0
+margin_right = 270.0
+margin_bottom = 29.0
+value = 100.0
+texture_under = ExtResource( 27 )
+texture_progress = ExtResource( 26 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Area2D" type="Area2D" parent="healthbar"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="healthbar/Area2D"]
+position = Vector2( 162, -91 )
+shape = SubResource( 21 )
+
+[node name="music" parent="." instance=ExtResource( 14 )]
 
 [connection signal="body_entered" from="gun/collision" to="gun" method="_on_collision_body_entered"]
 [connection signal="pressed" from="button" to="sign" method="_on_button_pressed"]
 [connection signal="pressed" from="button" to="gun" method="_on_button_pressed"]
 [connection signal="pressed" from="ad/Button" to="ad" method="_on_Button_pressed"]
 [connection signal="input_event" from="offer/Area2D" to="offer" method="_on_Area2D_input_event"]
-[connection signal="finished" from="music" to="music" method="_on_music_finished"]
+[connection signal="area_entered" from="healthbar/Area2D" to="healthbar" method="_on_Area2D_area_entered"]

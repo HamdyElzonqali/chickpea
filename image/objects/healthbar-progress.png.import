@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/blk-nx64-32x.png-f542c82924a56bb031110499c5327217.stex"
+path="res://.import/healthbar-progress.png-c4c2c79cfd355fa5f574f97e6dfba35e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://aseprite/blk-nx64-32x.png"
-dest_files=[ "res://.import/blk-nx64-32x.png-f542c82924a56bb031110499c5327217.stex" ]
+source_file="res://image/objects/healthbar-progress.png"
+dest_files=[ "res://.import/healthbar-progress.png-c4c2c79cfd355fa5f574f97e6dfba35e.stex" ]
 
 [params]
 

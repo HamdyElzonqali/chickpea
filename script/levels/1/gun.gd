@@ -93,8 +93,10 @@ func _on_collision_body_entered(body):
 		
 		get_node('../offer').queue_free()
 		get_node('../ad').queue_free()
-		instance.connect('shoot', self, 'something') # TO BE DONE
+		#instance.connect('shoot', self, 'something') # TO BE DONE
 		body.queue_free()
+		
+		get_node('../healthbar').setup()
 		
 		Globals.subtitle.clear()
 		Globals.subtitle.show_for(subtitles[5][0], subtitles[5][1], false, 1, subtitles[5][2])

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://script/core/loop.gd" type="Script" id=1]
+[ext_resource path="res://audio/music/GameOff Theme 1.0 - Mullaha (very rough).wav" type="AudioStream" id=2]
+
+[node name="music" type="AudioStreamPlayer"]
+stream = ExtResource( 2 )
+autoplay = true
+bus = "music"
+script = ExtResource( 1 )
+
+[connection signal="finished" from="." to="." method="_on_music_finished"]

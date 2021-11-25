@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://script/core/camera.gd" type="Script" id=1]
+[ext_resource path="res://other/fonts/uni0553.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://image/objects/Sprite-0001.png" type="Texture" id=3]
+[ext_resource path="res://script/levels/credit-button.gd" type="Script" id=4]
+[ext_resource path="res://objects/objects/music.tscn" type="PackedScene" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+extra_spacing_bottom = -7
+extra_spacing_char = 1
+font_data = ExtResource( 2 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 500, 500 )
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground/ParallaxLayer"]
+margin_left = -1.0
+margin_right = 500.0
+margin_bottom = 500.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="camera" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+script = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 2.0
+margin_top = 16.0
+margin_right = 320.0
+margin_bottom = 39.0
+custom_fonts/font = SubResource( 1 )
+text = "That's it... for now!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 14.0
+margin_top = 43.0
+margin_right = 314.0
+margin_bottom = 173.0
+custom_fonts/font = SubResource( 1 )
+text = "This so-called game was made
+for GameOff gamejam 2021.
+
+A game by
+ > Hamdy (Programming & Art)
+ > Mull (Music, sfx & voiceover)
+ > Celineee        (Backgrounds)"
+percent_visible = -0.0222222
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="music" parent="." instance=ExtResource( 5 )]
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 157, 212 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="credit-button" type="Sprite" parent="Node2D"]
+texture = ExtResource( 3 )
+
+[node name="Button" type="Button" parent="Node2D"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -99.0
+margin_top = -19.0
+margin_right = 99.0
+margin_bottom = 18.0
+mouse_default_cursor_shape = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Node2D/Button" to="Node2D" method="_on_Button_pressed"]

@@ -17,6 +17,7 @@ var subtitles = [
 	['NO NO NO...', 2, preload("res://audio/voice_over/No No No 1.4.wav")]
 ]
 
+
 func _on_button_pressed():
 	current_animation += 1
 	if current_animation < anim.get_animation_list().size() + 1:
