@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://script/levels/1/ad.gd" type="Script" id=1]
 [ext_resource path="res://script/levels/1/sign.gd" type="Script" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://image/objects/sign.png" type="Texture" id=15]
 [ext_resource path="res://image/objects/gun_bubble.png" type="Texture" id=16]
 [ext_resource path="res://image/objects/button.png" type="Texture" id=17]
+[ext_resource path="res://audio/sfx/ground_shake1.wav" type="AudioStream" id=18]
 [ext_resource path="res://script/objects/button.gd" type="Script" id=19]
 [ext_resource path="res://image/backgrounds/BgSkyLoop.png" type="Texture" id=20]
 [ext_resource path="res://image/objects/offer.png" type="Texture" id=21]
@@ -612,6 +613,10 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="healthbar/Area2D"]
 position = Vector2( 162, -91 )
 shape = SubResource( 21 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="healthbar"]
+stream = ExtResource( 18 )
+bus = "sfx_low"
 
 [node name="music" parent="." instance=ExtResource( 14 )]
 
